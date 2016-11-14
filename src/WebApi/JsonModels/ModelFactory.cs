@@ -9,9 +9,9 @@ namespace WebApi.JsonModels
 {
     public class ModelFactory
     {
-        public static CommentModel Map(Comments comment, IUrlHelper url)
+        public static CommentModel cMap(Comment comment, IUrlHelper url)
         {
-            // hint: use AutoMapper
+            
             return new CommentModel
             {
                 Url = url.Link(Config.CommentRoute, new { id = comment.id}),
@@ -22,15 +22,40 @@ namespace WebApi.JsonModels
             };
         }
 
-        public static Comments Map(CommentModel model)
+        public static Comment cMap(CommentModel model)
         {
-            // hint: use AutoMapper
-            return new Comments
+            
+            return new Comment
             {
                 score = model.score,
                 id = model.id,
                 text = model.text,
                 createdate = model.createdate
+            };
+        }
+
+        public static PostModel pMap(Post post, IUrlHelper url)
+        {
+           
+            return new PostModel
+            {
+                Url = url.Link(Config.PostRoute, new { id = post.id }),
+                score = post.score,
+                id = post.id,
+                body = post.body,
+                creationdate = post.creationdate
+            };
+        }
+
+        public static Post pMap(PostModel model)
+        {
+           
+            return new Post
+            {
+                score = model.score,
+                id = model.id,
+                body = model.body,
+                creationdate = model.creationdate
             };
         }
     }

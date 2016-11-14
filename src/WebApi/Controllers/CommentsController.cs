@@ -8,7 +8,7 @@ using WebApi.JsonModels;
 
 namespace WebApi.Controllers
 {
-    [Route("api/comments")]
+    [Route("api/comment")]
     public class CommentsController : BaseController
     {
         public CommentsController(IDataService dataService) : base(dataService)
@@ -20,14 +20,14 @@ namespace WebApi.Controllers
         public IActionResult Get(int page = 0, int pagesize = Config.DefaultPageSize)
         {
             var data = DataService.GetComments(page, pagesize)
-                .Select(c => ModelFactory.Map(c, Url));
+                .Select(c => ModelFactory.cMap(c, Url));
             var total = DataService.GetNumberOfComments();
 
             var result = new
             {
                 total = total,
-                prev = GetPrevUrl(Url, page, pagesize),
-                netx = GetNextUrl(Url, page, pagesize, total),
+                prev = GetPrevCommentUrl(Url, page, pagesize),
+                next = GetNextCommentUrl(Url, page, pagesize, total),
                 data = data
             };
 
@@ -41,27 +41,27 @@ namespace WebApi.Controllers
         [HttpGet("{id}", Name = Config.CommentRoute)]
         public IActionResult Get(int id)
         {
-            var comment = DataService.GetComments(id);
+            var comment = DataService.GetComment(id);
             if (comment == null) return NotFound();
-            return Ok(ModelFactory.Map(comment, Url));
+            return Ok(ModelFactory.cMap(comment, Url));
         }
 
         // POST api/values
         [HttpPost]
         public IActionResult Post([FromBody] CommentModel model)
         {
-            var comment = ModelFactory.Map(model);
-            DataService.AddComments(comment);
-            return Ok(ModelFactory.Map(comment, Url));
+            var comment = ModelFactory.cMap(model);
+            DataService.AddComment(comment);
+            return Ok(ModelFactory.cMap(comment, Url));
         }
 
         // PUT api/values/5
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody] CommentModel model)
         {
-            var comment = ModelFactory.Map(model);
+            var comment = ModelFactory.cMap(model);
             comment.id = id;
-            if (!DataService.UpdateComments(comment))
+            if (!DataService.UpdateComment(comment))
             {
                 return NotFound();
             }
@@ -72,7 +72,7 @@ namespace WebApi.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            if (!DataService.DeleteComments(id))
+            if (!DataService.DeleteComment(id))
             {
                 return NotFound();
             }

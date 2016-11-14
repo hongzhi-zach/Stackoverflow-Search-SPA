@@ -5,10 +5,11 @@ using System.Threading.Tasks;
 
 namespace DomainModel
 {
-    public class Comments
+    public class Comment
     {
         public int id { get; set; }
         public int postid { get; set; }
+   //     public virtual Post post { }    
         public int score { get; set; }
         public string text { get; set; }
         public DateTime createdate { get; set; }

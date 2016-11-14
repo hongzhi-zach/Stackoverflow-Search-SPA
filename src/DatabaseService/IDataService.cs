@@ -8,11 +8,18 @@ namespace DatabaseService
 {
     public interface IDataService
     {
-        IList<Comments> GetComments(int page, int pagesize);
-        Comments GetComments(int id);
-        void AddComments(Comments comment);
-        bool UpdateComments(Comments comment);
-        bool DeleteComments(int id);
+        IList<Post> GetPosts(int page, int pagesize);
+        Post GetPost(int id);
+        void AddPost(Post post);
+        bool UpdatePost(Post post);
+        bool DeletePost(int id);
+        int GetNumberOfPosts();
+        IList<Comment> GetComments(int page, int pagesize);
+        Comment GetComment(int id);
+        void AddComment(Comment comment);
+        bool UpdateComment(Comment comment);
+        bool DeleteComment(int id);
         int GetNumberOfComments();
+        
     }
 }

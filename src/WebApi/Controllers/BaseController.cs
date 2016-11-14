@@ -30,15 +30,25 @@ namespace WebApi.Controllers
             return page == 0;
         }
 
-        protected string GetNextUrl(IUrlHelper url, int page, int pagesize, int total)
+        protected string GetNextCommentUrl(IUrlHelper url, int page, int pagesize, int total)
         {
             if (IsLastPage(page, pagesize, total)) return null;
             return url.Link(Config.CommentsRoute, new { page = page + 1, pagesize });
         }
-        protected string GetPrevUrl(IUrlHelper url, int page, int pagesize)
+        protected string GetPrevCommentUrl(IUrlHelper url, int page, int pagesize)
         {
             if (IsFirstPage(page)) return null;
             return url.Link(Config.CommentsRoute, new { page = page - 1, pagesize });
+        }
+        protected string GetNextPostUrl(IUrlHelper url, int page, int pagesize, int total)
+        {
+            if (IsLastPage(page, pagesize, total)) return null;
+            return url.Link(Config.PostsRoute, new { page = page + 1, pagesize });
+        }
+        protected string GetPrevPostUrl(IUrlHelper url, int page, int pagesize)
+        {
+            if (IsFirstPage(page)) return null;
+            return url.Link(Config.PostsRoute, new { page = page - 1, pagesize });
         }
     }
 }

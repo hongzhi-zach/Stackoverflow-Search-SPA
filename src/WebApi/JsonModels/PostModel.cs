@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DomainModel
+namespace WebApi.JsonModels
 {
-    public class Post
+    public class PostModel
     {
+        public string Url { get; set; }
         public int id { get; set; }
         public int typeid { get; set; }
         public int? parentid { get; set; }
@@ -17,5 +18,6 @@ namespace DomainModel
         public DateTime? closeddate { get; set; }
         public string title { get; set; }
         public int userid { get; set; }
+
     }
 }

@@ -10,8 +10,77 @@ namespace DatabaseService
 {
     public class MySovaDataService : IDataService
     {
-        
-        public IList<Comments> GetComments(int page, int pagesize)
+
+        public IList<Post> GetPosts(int page, int pagesize)
+        {
+
+            using (var db = new Sova())
+            {
+                return db.Posts
+                    .OrderBy(p => p.id)
+                    .Skip(page * pagesize)
+                    .Take(pagesize)
+                    .ToList();
+            }
+        }
+
+        public Post GetPost(int id)
+        {
+            using (var db = new Sova())
+            {
+                return db.Posts.FirstOrDefault(p => p.id == id);
+            }
+        }
+
+        public void AddPost(Post post)
+        {
+            using (var db = new Sova())
+            {
+                post.id = db.Posts.Max(p => p.id) + 1;
+                db.Add(post);
+                db.SaveChanges();
+            }
+        }
+
+        public bool UpdatePost(Post post)
+        {
+            using (var db = new Sova())
+
+                try
+                {
+                    db.Attach(post);
+                    db.Entry(post).State = EntityState.Modified;
+                    return db.SaveChanges() > 0;
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    return false;
+                }
+
+        }
+
+        public bool DeletePost(int id)
+        {
+            using (var db = new Sova())
+            {
+                var post = db.Posts.FirstOrDefault(p => p.id == id);
+                if (post == null)
+                {
+                    return false;
+                }
+                db.Remove(post);
+                return db.SaveChanges() > 0;
+            }
+        }
+
+        public int GetNumberOfPosts()
+        {
+            using (var db = new Sova())
+            {
+                return db.Posts.Count();
+            }
+        }
+        public IList<Comment> GetComments(int page, int pagesize)
         {
             using (var db = new Sova())
             {
@@ -23,7 +92,7 @@ namespace DatabaseService
             }
         }
 
-        public Comments GetComments(int id)
+        public Comment GetComment(int id)
         {
             using (var db = new Sova())
             {
@@ -31,7 +100,7 @@ namespace DatabaseService
             }
         }
 
-        public void AddComments(Comments comment)
+        public void AddComment(Comment comment)
         {
             using (var db = new Sova())
             {
@@ -41,7 +110,7 @@ namespace DatabaseService
             }
         }
 
-        public bool UpdateComments(Comments comment)
+        public bool UpdateComment(Comment comment)
         {
             using (var db = new Sova())
 
@@ -58,7 +127,7 @@ namespace DatabaseService
 
         }
 
-        public bool DeleteComments(int id)
+        public bool DeleteComment(int id)
         {
             using (var db = new Sova())
             {
@@ -79,5 +148,7 @@ namespace DatabaseService
                 return db.Comments.Count();
             }
         }
+
+        
     }
 }
