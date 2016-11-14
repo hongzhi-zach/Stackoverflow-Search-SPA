@@ -9,6 +9,29 @@ namespace WebApi.JsonModels
 {
     public class ModelFactory
     {
+        public static SearchResultModel SearchMap(SearchResult searchresult, IUrlHelper url, string searchstring)
+        {
+
+            return new SearchResultModel
+            {
+                Url = url.Link(Config.SearchResultRoute, new { id = searchstring }),
+                title = searchresult.title,
+                body = searchresult.body,
+                score = searchresult.score
+            };
+        }
+
+        public static SearchResult SearchMap(SearchResultModel model)
+        {
+
+            return new SearchResult
+            {
+                title = model.title,
+                body = model.body,
+                score = model.score
+            };
+        }
+
         public static CommentModel cMap(Comment comment, IUrlHelper url)
         {
             

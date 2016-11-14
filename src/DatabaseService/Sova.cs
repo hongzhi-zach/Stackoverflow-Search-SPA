@@ -12,7 +12,8 @@ namespace DatabaseService
     {
         public DbSet<Post> Posts { get; set; }
         public DbSet<Comment> Comments { get; set; }
-        
+        public DbSet<SearchResult> SearchResults { get; set; }
+        public DbSet<Markedpost> MarkedPosts { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -34,7 +35,10 @@ namespace DatabaseService
             modelBuilder.Entity<Comment>().Property(t => t.text).HasColumnName("commenttext");
             modelBuilder.Entity<Comment>().Property(t => t.createdate).HasColumnName("commentcreatedate");
             modelBuilder.Entity<Comment>().Property(t => t.userid).HasColumnName("userid");
-           
+
+            modelBuilder.Entity<SearchResult>().HasKey(t => new { t.title, t.body, t.score });
+            modelBuilder.Entity<Markedpost>().HasKey(t => new { t.postid, t.searchstring});
+
             base.OnModelCreating(modelBuilder);
         }
        

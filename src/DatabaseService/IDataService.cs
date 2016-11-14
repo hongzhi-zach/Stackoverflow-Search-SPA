@@ -8,6 +8,8 @@ namespace DatabaseService
 {
     public interface IDataService
     {
+        IList<SearchResult> EFShowSearchResult(string searchstring);
+        void EFMarkThisPost(int postid, string searchstring);
         IList<Post> GetPosts(int page, int pagesize);
         Post GetPost(int id);
         void AddPost(Post post);

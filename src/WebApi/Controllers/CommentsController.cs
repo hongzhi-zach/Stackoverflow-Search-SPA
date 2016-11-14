@@ -15,7 +15,6 @@ namespace WebApi.Controllers
         {
         }
 
-        // GET api/values
         [HttpGet(Name = Config.CommentsRoute)]
         public IActionResult Get(int page = 0, int pagesize = Config.DefaultPageSize)
         {

@@ -5,11 +5,40 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using DomainModel;
 using Microsoft.EntityFrameworkCore;
+using MySql.Data.MySqlClient;
+using System.Data;
 
 namespace DatabaseService
 {
     public class MySovaDataService : IDataService
     {
+        public IList<SearchResult> EFShowSearchResult(string searchstring)
+        {
+            using (var db = new Sova())
+            {
+                var result = db.Set<SearchResult>()
+                    .FromSql("call search(" + searchstring + ")");
+                foreach (var data in result)
+                {
+                    Console.WriteLine($"{data.title} {data.body} {data.score}");
+                }
+                return result.ToList();
+            }
+        }
+
+        public void EFMarkThisPost(int postid, string searchstring)
+        {
+            using (var db = new Sova())
+            {
+                var conn = (MySqlConnection)db.Database.GetDbConnection();
+                conn.Open();
+                var cmd = new MySqlCommand("call markthispost(@1,@2)", conn);
+                cmd.Parameters.Add("@1", DbType.Int64).Value = postid;
+                cmd.Parameters.Add("@2", DbType.String).Value = searchstring;
+                Console.WriteLine($"Marked");
+                
+            }
+        }
 
         public IList<Post> GetPosts(int page, int pagesize)
         {
