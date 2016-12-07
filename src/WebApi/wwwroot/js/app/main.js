@@ -30,6 +30,11 @@
             template: { require: 'text!app/components/home/homeView.html' }
         });
 
+        ko.components.register("home", {
+            viewModel: { require: 'app/components/home/home' },
+            template: { require: 'text!app/components/home/homeView.html' }
+        });
+
         ko.components.register("comment-list", {
             viewModel: { require: 'app/components/comment/commentList' },
             template: { require: 'text!app/components/comment/commentListView.html' }

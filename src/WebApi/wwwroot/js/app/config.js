@@ -6,6 +6,7 @@
             
         },
         menuItems: {
+            home: "Home",
             comments: "Comments",
             posts: "Posts"
         }
