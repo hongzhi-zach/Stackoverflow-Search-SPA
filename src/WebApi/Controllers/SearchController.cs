@@ -18,11 +18,18 @@ namespace WebApi.Controllers
         [HttpGet(Name = Config.SearchResultRoute)]
         public IActionResult Get(String searchstring)
         {
-            var result = DataService.EFShowSearchResult(searchstring)
-                .Select(s => ModelFactory.SearchMap(s,Url,searchstring));
+            var data = DataService.EFShowSearchResult(searchstring)
+                .Select(s => ModelFactory.SearchMap(s));
+
+            var result = new
+            {
+                Url = Url.Link(Config.SearchResultRoute, new { searchstring }),
+                Result = data
+            };
 
             return Ok(result);
 
         }
     }
 }
+

@@ -8,9 +8,8 @@ namespace DomainModel
 {
     public class SearchResult
     {
-        public string title { get; set; }
+        public int id { get; set; }
         public string body { get; set; }
-        public int score { get; set; }
 
     }
 }

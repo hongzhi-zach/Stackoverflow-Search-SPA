@@ -1,0 +1,8 @@
+﻿<div class="col-sm-6">
+    <ul class="list-group" data-bind="foreach: comments">
+        <li class="list-group-item" data-bind="click: $parent.selectComment, css: {active: $parent.isSelected($data)}">
+            <span data-bind="text: text"></span>
+        </li>
+    </ul>
+</div>
+<comment-details></comment-details>

@@ -8,7 +8,7 @@ using WebApi.JsonModels;
 
 namespace WebApi.Controllers
 {
-    [Route("api/comment")]
+    [Route("api/comments")]
     public class CommentsController : BaseController
     {
         public CommentsController(IDataService dataService) : base(dataService)

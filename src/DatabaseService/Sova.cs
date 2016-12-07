@@ -12,8 +12,13 @@ namespace DatabaseService
     {
         public DbSet<Post> Posts { get; set; }
         public DbSet<Comment> Comments { get; set; }
+        public DbSet<User> User { get; set; }
+        public DbSet<Linkpost> Linkpost { get; set; }
+        public DbSet<Post_tag> Post_tag { get; set; }
+        public DbSet<Tags> Tags { get; set; }
+        //public DbSet<History> History { get; set; }
+        public DbSet<Markedpost> Markedpost { get; set; }
         public DbSet<SearchResult> SearchResults { get; set; }
-        public DbSet<Markedpost> MarkedPosts { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -28,15 +33,50 @@ namespace DatabaseService
             modelBuilder.Entity<Post>().Property(p => p.closeddate).HasColumnName("closeddate");
             modelBuilder.Entity<Post>().Property(p => p.title).HasColumnName("title");
             modelBuilder.Entity<Post>().Property(p => p.userid).HasColumnName("userid");
-            modelBuilder.Entity<Comment>().ToTable("comment");
-            modelBuilder.Entity<Comment>().Property(t => t.id).HasColumnName("commentid");
-            modelBuilder.Entity<Comment>().Property(t => t.postid).HasColumnName("postid");
-            modelBuilder.Entity<Comment>().Property(t => t.score).HasColumnName("commentscore");
-            modelBuilder.Entity<Comment>().Property(t => t.text).HasColumnName("commenttext");
-            modelBuilder.Entity<Comment>().Property(t => t.createdate).HasColumnName("commentcreatedate");
-            modelBuilder.Entity<Comment>().Property(t => t.userid).HasColumnName("userid");
 
-            modelBuilder.Entity<SearchResult>().HasKey(t => new { t.title, t.body, t.score });
+            //Comments
+            modelBuilder.Entity<Comment>().ToTable("comment");
+            modelBuilder.Entity<Comment>().Property(c => c.id).HasColumnName("commentid");
+            modelBuilder.Entity<Comment>().Property(c => c.postid).HasColumnName("postid");
+            modelBuilder.Entity<Comment>().Property(c => c.score).HasColumnName("commentscore");
+            modelBuilder.Entity<Comment>().Property(c => c.text).HasColumnName("commenttext");
+            modelBuilder.Entity<Comment>().Property(c => c.createdate).HasColumnName("commentcreatedate");
+            modelBuilder.Entity<Comment>().Property(c => c.userid).HasColumnName("userid");
+
+            //User
+            modelBuilder.Entity<User>().ToTable("user");
+            modelBuilder.Entity<User>().Property(u => u.id).HasColumnName("userid");
+            modelBuilder.Entity<User>().Property(u => u.displayname).HasColumnName("userdisplayname");
+            modelBuilder.Entity<User>().Property(u => u.creationdate).HasColumnName("usercreationdate");
+            modelBuilder.Entity<User>().Property(u => u.location).HasColumnName("userlocation");
+            modelBuilder.Entity<User>().Property(u => u.userage).HasColumnName("userage");
+
+            //Linkpost
+            modelBuilder.Entity<Linkpost>().ToTable("linkpost");
+            modelBuilder.Entity<Linkpost>().Property(lp => lp.linkpostid).HasColumnName("linkpostid");
+            modelBuilder.Entity<Linkpost>().Property(lp => lp.postid).HasColumnName("postid");
+
+            //Post_tag
+            modelBuilder.Entity<Post_tag>().ToTable("post_tag");
+            modelBuilder.Entity<Post_tag>().Property(pt => pt.id).HasColumnName("id");
+            modelBuilder.Entity<Post_tag>().Property(pt => pt.postid).HasColumnName("postid");
+            modelBuilder.Entity<Post_tag>().Property(pt => pt.tagkeyword).HasColumnName("tagkeyword");
+
+           //Tags
+            modelBuilder.Entity<Tags>().ToTable("tags");
+            modelBuilder.Entity<Tags>().Property(t => t.id).HasColumnName("tagid");
+            modelBuilder.Entity<Tags>().Property(t => t.tagkeyword).HasColumnName("tagkeyword");
+
+            /*//History
+            modelBuilder.Entity<History>().ToTable("history");
+            modelBuilder.Entity<History>().Property(h => h.searchstring).HasColumnName("searchstring");
+
+            //Markedpost
+            modelBuilder.Entity<Markedpost>().ToTable("markedpost");
+            modelBuilder.Entity<Markedpost>().Property(mp => mp.postid).HasColumnName("postid");
+            modelBuilder.Entity<Markedpost>().Property(mp => mp.searchstring).HasColumnName("searchstring");*/
+
+            modelBuilder.Entity<SearchResult>().HasKey(t => new { t.id, t.body });
             modelBuilder.Entity<Markedpost>().HasKey(t => new { t.postid, t.searchstring});
 
             base.OnModelCreating(modelBuilder);

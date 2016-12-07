@@ -1,0 +1,23 @@
+﻿<div class="col-sm-6" data-bind="with: home">
+    <form class="form-horizontal">
+   
+        <div class="form-group">
+
+            <div class="col-sm-6">
+                <input type="text"
+                       class="form-control"
+                       id="text"
+                       data-bind="textInput: text"
+                       placeholder="searchstring">
+            </div>
+            <div class="col-sm-2">
+                <button type="submit"
+                        class="btn btn-success"
+                        data-bind="click: $parent.Search">
+                    Search
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+<home></home>

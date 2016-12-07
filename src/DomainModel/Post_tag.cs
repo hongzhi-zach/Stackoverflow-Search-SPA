@@ -7,7 +7,8 @@ namespace DomainModel
 {
     public class Post_tag
     {
-        public int postid { get; set; }
+        public int id { get; set; }
+        public int? postid { get; set; }
         public string tagkeyword { get; set; }
     }
 }

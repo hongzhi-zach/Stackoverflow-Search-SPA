@@ -8,7 +8,7 @@ using WebApi.JsonModels;
 
 namespace WebApi.Controllers
 {
-    [Route("api/post")]
+    [Route("api/posts")]
     public class PostsController : BaseController
     {
         public PostsController(IDataService dataService) : base(dataService)

@@ -7,6 +7,7 @@ namespace DomainModel
 {
     public class Tags
     {
+        public int id { get; set; }
         public string tagkeyword { get; set; }
 
     }
