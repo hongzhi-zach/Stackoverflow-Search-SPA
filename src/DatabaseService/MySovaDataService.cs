@@ -17,11 +17,27 @@ namespace DatabaseService
         {
             using (var db = new Sova())
             {
+                //var conn = (MySqlConnection)db.Database.GetDbConnection();
+                //conn.Open();
+                //var cmd = new MySqlCommand("call weightingsearch(@searchstring)", conn);
+                //cmd.Parameters.Add("@searchstring", DbType.String).Value = searchstring;
+                //var reader = cmd.ExecuteReader();
+                //var result = new List<SearchResult>();
+                //while(reader.HasRows && reader.Read())
+                //{
+                //    result.Add(new SearchResult
+                //    {
+                //        id = reader.GetInt32(0),
+                //        Title = reader.GetString(2),
+                //        body = reader.GetString(3)
+                //    });
+                //}
+                //return result;
                 var result = db.Set<SearchResult>()
                     .FromSql("call weightingsearch('" + searchstring + "')");
                 foreach (var data in result)
                 {
-                    Console.WriteLine($"{data.id} {data.body}");
+                    Console.WriteLine($"{data.id} {data.title} {data.body}");
                 }
                 return result.ToList();
             }

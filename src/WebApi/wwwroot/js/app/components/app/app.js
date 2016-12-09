@@ -1,6 +1,7 @@
 ﻿define(['knockout', 'postman', 'config'], function(ko, postman, config) {
     return function () {
         var menuItems = [
+            { title: config.menuItems.searchPost, component: 'search-post' },
             { title: config.menuItems.home, component: 'home' },
             { title: config.menuItems.comments, component: 'comment-list'}, 
             { title: config.menuItems.posts, component: 'post-list' }
@@ -28,11 +29,15 @@
 
         selectMenu(menuItems[0]);
 
+             
+       
+
         return {
             menuItems,
             currentComponent,
             selectMenu,
-            isSelected
+            isSelected,
+            
         }
     }
 });

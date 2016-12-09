@@ -8,7 +8,7 @@ namespace DomainModel
     public class Post
     {
         public int id { get; set; }
-        public int typeid { get; set; }
+        public int posttypeid { get; set; }
         public int? parentid { get; set; }
         public int? acceptedanswerid { get; set; }
         public DateTime? creationdate { get; set; }

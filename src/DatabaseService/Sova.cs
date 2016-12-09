@@ -24,7 +24,7 @@ namespace DatabaseService
         {
             modelBuilder.Entity<Post>().ToTable("post");
             modelBuilder.Entity<Post>().Property(p => p.id).HasColumnName("postid");
-            modelBuilder.Entity<Post>().Property(p => p.typeid).HasColumnName("posttypeid");
+            modelBuilder.Entity<Post>().Property(p => p.posttypeid).HasColumnName("posttypeid");
             modelBuilder.Entity<Post>().Property(p => p.parentid).HasColumnName("parentid");
             modelBuilder.Entity<Post>().Property(p => p.acceptedanswerid).HasColumnName("acceptedanswerid");
             modelBuilder.Entity<Post>().Property(p => p.creationdate).HasColumnName("creationdate");
@@ -76,7 +76,7 @@ namespace DatabaseService
             modelBuilder.Entity<Markedpost>().Property(mp => mp.postid).HasColumnName("postid");
             modelBuilder.Entity<Markedpost>().Property(mp => mp.searchstring).HasColumnName("searchstring");*/
 
-            modelBuilder.Entity<SearchResult>().HasKey(t => new { t.id, t.body });
+            modelBuilder.Entity<SearchResult>().HasKey(t => new { t.id, t.title, t.body });
             modelBuilder.Entity<Markedpost>().HasKey(t => new { t.postid, t.searchstring});
 
             base.OnModelCreating(modelBuilder);

@@ -25,15 +25,10 @@
             template: { require: 'text!app/components/app/appView.html' }
         });
 
-        ko.components.register("home", {
-            viewModel: { require: 'app/components/home/home' },
-            template: { require: 'text!app/components/home/homeView.html' }
-        });
-
-        ko.components.register("home", {
-            viewModel: { require: 'app/components/home/home' },
-            template: { require: 'text!app/components/home/homeView.html' }
-        });
+        //ko.components.register("home", {
+        //    viewModel: { require: 'app/components/home/home' },
+        //    template: { require: 'text!app/components/home/homeView.html' }
+        //});
 
         ko.components.register("comment-list", {
             viewModel: { require: 'app/components/comment/commentList' },
@@ -48,6 +43,11 @@
         ko.components.register("post-list", {
             viewModel: { require: 'app/components/post/postList' },
             template: { require: 'text!app/components/post/postListView.html' }
+        });
+
+        ko.components.register("search-post", {
+            viewModel: { require: 'app/components/search/search' },
+            template: { require: 'text!app/components/search/searchView.html' }
         });
     });
 

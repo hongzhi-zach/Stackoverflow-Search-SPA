@@ -15,6 +15,7 @@ namespace WebApi.JsonModels
             return new SearchResultModel
             {
                 id = searchresult.id,
+                title = searchresult.title,
                 body = searchresult.body
             };
         }
@@ -26,6 +27,7 @@ namespace WebApi.JsonModels
             return new SearchResult
             {
                 id = model.id,
+                title = model.title,
                 body = model.body
             };
         }
@@ -65,6 +67,7 @@ namespace WebApi.JsonModels
                 Url = url.Link(Config.PostRoute, new { id = post.id }),
                 score = post.score,
                 id = post.id,
+                title = post.title,
                 body = post.body,
                 creationdate = post.creationdate
             };
