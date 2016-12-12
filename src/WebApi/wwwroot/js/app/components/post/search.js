@@ -2,7 +2,7 @@
    
     return function (params) {
         var searchString = ko.observable("");
-
+        
         //var searchResult = ko.observableArray([]);
 
         //var curPage = ko.observable(params ? params.url : undefined);

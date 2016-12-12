@@ -1,12 +1,21 @@
-﻿define(['knockout', 'dataservice', 'postman', 'config'],
-    function (ko, dataService, postman, config) {
+﻿define(['knockout', 'postman', 'config', 'dataservice', 'toastr'], function (ko, postman, config, dataService, toastr) {
     return function (params) {
-            var posts = ko.observableArray([]);
+            var posts = ko.observableArray(params ? params.posts : []);
 
             var curPage = ko.observable(params ? params.url : undefined);
 
             var selectPost = function (post) {
-                postman.publish(config.events.selectPost, { post, url: curPage() });
+                postman.publish(config.events.selectPost, { 
+                    post, 
+                    url: curPage(), 
+                    howToGetBack: function () {
+                        postman.publish(config.events.changeMenu, {
+                            title: config.menuItems.posts,
+                            params: { posts: posts() }
+                        });
+                        toastr.success("Back to post list");
+                    }
+                });
             };
 
             var setData = function (result) {
@@ -14,9 +23,11 @@
                 curPage(result.url);
             };
 
-            dataService.getPosts(curPage(), function (result) {
-                setData(result);
-            });
+            if (params === undefined) {
+                dataService.getPosts(curPage(), function (result) {
+                    setData(result);
+                });
+            }
               
             return {
                 posts,

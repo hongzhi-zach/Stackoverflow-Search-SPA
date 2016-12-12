@@ -4,7 +4,8 @@
             selectComment: "SelectComment",
             submitComment: "SubmitComment",
             selectPost: "SelectPost",
-            searchPost : "Search"
+            searchPost: "Search",
+            changeMenu: "ChangeMenu"
         },
         menuItems: {
             history: "Search History",

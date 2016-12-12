@@ -4,11 +4,15 @@
         var post = ko.observable(params.post);
 
         var back = function () {
-            postman.publish(
-                config.events.changeMenu,
-                { title: config.menuItems.posts, params });
-            toastr.success("Back to post list");
+            params.howToGetBack();
+            //postman.publish(
+            //    config.events.changeMenu,
+            //    { title: config.menuItems.posts, params });
+            //console.log(params);
+            
         };
+
+        //back = params.howToGetBack;
         return {
             post,
             back
