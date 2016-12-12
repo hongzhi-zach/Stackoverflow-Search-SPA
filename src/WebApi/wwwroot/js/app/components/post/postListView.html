@@ -1,13 +1,18 @@
 ﻿<ul class="list-group" data-bind="foreach: posts">
-    <li data-bind="text: $data.total"></li>
-    <li data-bind="text: $data.prev"></li>
-    <li data-bind="text: $data.next"></li>
-    <ui data-bind="foreach:data">
-        <li data-bind="text: $data.url"></li>
-        <li data-bind="text: $data.id"></li>
+    
+    
+       <!-- <li data-bind="text: $data.url"></li>-->
+        <!--<li data-bind="text: $data.id"></li>
         <li data-bind="text: $data.title"></li>
-        <li data-bind="text: $data.score"></li>
-        <li data-bind="text: $data.body"></li>
-    </ui>
+        <li data-bind="text: $data.score"></li>-->
+        <li class="list-group-item" data-bind="click: $parent.selectPost">
+             <div data-bind="html: id"></div>
+            <div data-bind="html: body"></div>  
+        </li>
+   
+
+    <!--<li data-bind="text: $data.total"></li>
+    <li data-bind="text: $data.prev"></li>
+    <li data-bind="text: $data.next"></li>-->
 </ul>
 

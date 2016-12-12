@@ -1,0 +1,29 @@
+﻿<div class="col-sm-12">
+        <div>
+            <button type="submit"
+                    class="btn btn-default"
+                    data-bind="click: $parent.back">
+                Back
+            </button>
+        </div>
+
+    <ul class="list-group" data-bind="foreach: searchResult">
+
+
+        <li class="list-group-item">
+            <div tyle="font-size:large;cursor:pointer" data-bind="text: title"></div>
+            <div data-bind="html: body"></div>
+        </li>
+        </ul>
+        <!--<table class="table table-striped">
+            <tbody data-bind="foreach: searchResult">
+                <tr>
+                    <td style="font-size:large;cursor:pointer" data-bind="html: title"></td>
+                </tr>
+                <tr>
+                    <td data-bind="html: result.body"></td>
+                </tr>
+            </tbody>
+        </table>-->
+
+</div>

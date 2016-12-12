@@ -12,17 +12,16 @@
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-           
+        <search-post></search-post>
             <!--<form class="navbar-form navbar-left">
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Search" >
+                    <input type="text" class="form-control" data-bind="value: searchString">
                 </div>
-                <button type="submit" class="btn btn-default" >Search</button>
+                <button type="submit" class="btn btn-default" data-bind="click: searchPost">Search</button>
             </form>-->
             <ul class="nav navbar-nav navbar-right" data-bind="foreach: menuItems">
                 <li data-bind="css: {active: $parent.isSelected($data)}">
                     <a href="#" data-bind="click: $parent.selectMenu">
-
                         <span data-bind="text: title"></span>
                     </a>
                 </li>
@@ -31,4 +30,20 @@
     </div><!-- /.container-fluid -->
 </nav>
 
-<div data-bind="component: currentComponent"></div>
+<!--<div data-bind="template: view"></div>
+<script type="text/html" id="default">
+</script>
+<script type="text/html" id="searchresult">
+    <table class="table table-striped">
+        <tbody data-bind="foreach: searchResult">
+            <tr>
+                <td style="font-size:large" data-bind="html: title"></td>
+            </tr>
+            <tr>
+                <td data-bind="html: body"></td>
+            </tr>
+        </tbody>
+    </table>
+</script>-->
+
+<div data-bind="component: {name: currentComponent, params: currentParams}"></div>

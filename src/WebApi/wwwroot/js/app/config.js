@@ -2,12 +2,12 @@
     return {
         events: {
             selectComment: "SelectComment",
-            submitComment: "SubmitComment"
-            //search : "Search"
+            submitComment: "SubmitComment",
+            selectPost: "SelectPost",
+            searchPost : "Search"
         },
         menuItems: {
-            searchPost: "Search",
-            home: "Home",
+            history: "Search History",
             comments: "Comments",
             posts: "Posts"
         }

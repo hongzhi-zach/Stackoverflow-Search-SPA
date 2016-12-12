@@ -25,11 +25,6 @@
             template: { require: 'text!app/components/app/appView.html' }
         });
 
-        //ko.components.register("home", {
-        //    viewModel: { require: 'app/components/home/home' },
-        //    template: { require: 'text!app/components/home/homeView.html' }
-        //});
-
         ko.components.register("comment-list", {
             viewModel: { require: 'app/components/comment/commentList' },
             template: { require: 'text!app/components/comment/commentListView.html' }
@@ -45,10 +40,26 @@
             template: { require: 'text!app/components/post/postListView.html' }
         });
 
-        ko.components.register("search-post", {
-            viewModel: { require: 'app/components/search/search' },
-            template: { require: 'text!app/components/search/searchView.html' }
+        ko.components.register("post-details", {
+            viewModel: { require: 'app/components/post/postDetails' },
+            template: { require: 'text!app/components/post/postDetailsView.html' }
         });
+
+        ko.components.register("history-list", {
+            viewModel: { require: 'app/components/history/historyList' },
+            template: { require: 'text!app/components/history/historyListView.html' }
+        });
+
+
+       ko.components.register("search-result", {
+           viewModel: { require: 'app/components/post/searchResult' },
+           template: { require: 'text!app/components/post/searchResultView.html' }
+       });
+
+       ko.components.register("search-post", {
+           viewModel: { require: 'app/components/post/search' },
+           template: { require: 'text!app/components/post/searchView.html' }
+       });
     });
 
     require(['knockout'], function (ko) {

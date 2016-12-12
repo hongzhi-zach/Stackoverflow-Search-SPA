@@ -28,6 +28,7 @@ namespace WebApi.Controllers
                 var result = new
                 {
                     total = total,
+                    Url = Url.Link(Config.PostsRoute, new { page, pagesize }),
                     prev = GetPrevPostUrl(Url, page, pagesize),
                     next = GetNextPostUrl(Url, page, pagesize, total),
                     data = data

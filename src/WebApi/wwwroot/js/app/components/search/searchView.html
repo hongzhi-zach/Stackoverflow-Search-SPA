@@ -7,15 +7,32 @@
 <div data-bind="template: view"></div>
 <script type="text/html" id="default"></script>
     <script type="text/html" id="searchresult">
-    <table class="table table-striped">
-        <tbody data-bind="foreach: searchResult">
-            <tr>
-                <td style="font-size:large" data-bind="html: title"></td>
+        <ul data-bind="foreach: searchResult">
+            <li style="cursor: pointer;font-size:large; color:white;">
+                <div>
+                    <!--<a href="http://localhost:15616/api/posts/html.id">-->
+                        <a href="http://localhost:15616/api/posts/" on_Click="this.href+=html.id">
+                            <span data-bind="html: title"></span>
+                        </a>
+</div>
+                <div data-bind="html: body"></div>
+            </li>
+        </ul>
+    <!--<table class="table table-striped">
+        
+            <tbody data-bind="foreach: searchResult">
+
+                <tr>
+                    
+                    <td style="cursor: pointer;
+  font-size:large; 
+  color:white;" data-bind="html: title"></td>
+       
             </tr>
             <tr>
                 <td data-bind="html: body"></td>
             </tr>
-</tbody>
-    </table>
+        </tbody>
+    </table>-->
 </script>
     <!--<p data-bind="html: body"></p>-->

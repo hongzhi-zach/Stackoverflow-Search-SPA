@@ -1,0 +1,45 @@
+﻿<div class="col-sm-12" data-bind="with: post">
+    <form class="form-horizontal">
+        <div>
+            <button type="submit"
+                    class="btn btn-default"
+                    data-bind="click: $parent.back">
+                Back
+            </button>
+        </div>
+        <div class="form-group" >
+            <label for="postBody" class="col-sm-2 control-label">postid</label>
+            <div class="col-sm-10" data-bind="html: id"></div>
+        </div>
+        <div class="form-group">
+            <label for="postBody" class="col-sm-2 control-label">title</label>
+            <div class="col-sm-10" data-bind="html: title"></div>
+        </div>
+        <div class="form-group">
+            <label for="postBody" class="col-sm-2 control-label">Body</label>
+            <div class="col-sm-10" data-bind="html: body"></div>
+        </div>
+        </form>
+        <!--<div class="form-group">
+            <label for="url" class="col-sm-2 control-label">Url</label>
+            <div class="col-sm-10">
+                <input type="text"
+                       class="form-control"
+                       id="url"
+                       readonly="readonly"
+                       data-bind="value: url"
+                       placeholder="Url">
+            </div>
+        </div>-->
+        <!--<div class="form-group">
+            <label for="personAge" class="col-sm-2 control-label">Age</label>
+            <div class="col-sm-10">
+                <input type="number"
+                       class="form-control"
+                       id="personAge"
+                       data-bind="textInput: age"
+                       placeholder="Age">
+            </div>
+        </div>-->
+
+</div>

@@ -1,13 +1,26 @@
-﻿define(['knockout', 'dataservice'], function (ko, dataService) {
-        return function () {
+﻿define(['knockout', 'dataservice', 'postman', 'config'],
+    function (ko, dataService, postman, config) {
+    return function (params) {
             var posts = ko.observableArray([]);
-              dataService.getPosts(function (data) {
-                posts(data);
-            });
 
+            var curPage = ko.observable(params ? params.url : undefined);
+
+            var selectPost = function (post) {
+                postman.publish(config.events.selectPost, { post, url: curPage() });
+            };
+
+            var setData = function (result) {
+                posts(result.data);
+                curPage(result.url);
+            };
+
+            dataService.getPosts(curPage(), function (result) {
+                setData(result);
+            });
+              
             return {
-                posts
-                
+                posts,
+                selectPost
             };
         };
     });
