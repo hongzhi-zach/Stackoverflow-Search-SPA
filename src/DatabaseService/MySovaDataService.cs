@@ -20,7 +20,6 @@ namespace DatabaseService
                 return db.HistoryList
                     .OrderBy(h => h.id)
                     .Skip(page * pagesize)
-                    .Take(pagesize)
                     .ToList();
             }
         }
