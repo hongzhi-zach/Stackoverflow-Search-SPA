@@ -1,9 +1,19 @@
 ﻿define(['knockout', 'postman', 'config', 'dataservice', 'toastr'], function (ko, postman, config, dataService, toastr) {
    
     return function (params) {
-        console.log(params);
         var posts = ko.observableArray([]);
         var searchResult = ko.observableArray(params.resultList);
+        var searchString = ko.observable(params.searchString);
+        var total = ko.observable();
+        var prevUrl = ko.observable();
+        var nextUrl = ko.observable();
+        var canPrev = function () {
+            return prevUrl();
+        };
+        var canNext = function () {
+            return nextUrl();
+        };
+
         var curPage = ko.observable(params ? params.url : undefined);
         var selectPost = function (post) {
             postman.publish(config.events.selectPost, {
@@ -15,18 +25,39 @@
                 }
             });
         };
+
+        var showPrev = function () {
+            dataService.getSearchResult(prevUrl(), searchString, function (result) {
+                setData(result);
+            });
+        }
+
+        var showNext = function () {
+            dataService.getSearchResult(nextUrl(), searchString,function (result) {
+                setData(result);
+            });
+        }
         var setData = function (result) {
             posts(result.data);
+            total(result.total);
+            prevUrl(result.prev);
+            console.log(result.next);
+            nextUrl(result.next);
             curPage(result.url);
         };
 
-        dataService.getPosts(curPage(), function (result) {
+        dataService.getSearchResult(curPage(), searchString, function (result) {
             setData(result);
         });
         
         return {
             searchResult,
-            selectPost
+            selectPost,
+            total,
+            canPrev,
+            canNext,
+            showPrev,
+            showNext
         };
     };
 });

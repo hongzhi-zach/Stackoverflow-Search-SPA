@@ -2,6 +2,15 @@
     return function (params) {
             var posts = ko.observableArray(params ? params.posts : []);
 
+            var total = ko.observable();
+            var prevUrl = ko.observable();
+            var nextUrl = ko.observable();
+            var canPrev = function () {
+                return prevUrl();
+            };
+            var canNext = function () {
+                return nextUrl();
+            };
             var curPage = ko.observable(params ? params.url : undefined);
 
             var selectPost = function (post) {
@@ -20,18 +29,38 @@
 
             var setData = function (result) {
                 posts(result.data);
+                total(result.total);
+                prevUrl(result.prev);
+                nextUrl(result.next);
                 curPage(result.url);
             };
 
-            if (params === undefined) {
-                dataService.getPosts(curPage(), function (result) {
+            var showPrev = function () {
+                dataService.getPosts(prevUrl(), function (result) {
                     setData(result);
                 });
             }
+
+            var showNext = function () {
+                dataService.getPosts(nextUrl(), function (result) {
+                    setData(result);
+                });
+            }
+            //if (params === undefined) {
+                dataService.getPosts(curPage(), function (result) {
+                    setData(result);
+                });
+            //}
               
+
             return {
                 posts,
-                selectPost
+                selectPost,
+                total,
+                canPrev,
+                canNext,
+                showPrev,
+                showNext
             };
         };
     });

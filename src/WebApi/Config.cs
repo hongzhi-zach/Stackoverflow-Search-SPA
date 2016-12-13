@@ -21,5 +21,7 @@ namespace WebApi
         public const string LinkpostsRoute = "LinkpostsRoute";
         public const string TagRoute = "TagRoute";
         public const string TagsRoute = "TagsRoute";
+        public const string HistoryRoute = "HistoryRoute";
+        public const string HistoryListRoute = "HistoryListRoute";
     }
 }

@@ -1,18 +1,24 @@
-﻿<ul class="list-group" data-bind="foreach: posts">
-    
-    
-       <!-- <li data-bind="text: $data.url"></li>-->
-        <!--<li data-bind="text: $data.id"></li>
-        <li data-bind="text: $data.title"></li>
-        <li data-bind="text: $data.score"></li>-->
+﻿<div class="col-sm-12">
+    <ul class="list-group" data-bind="foreach: posts">
+
         <li class="list-group-item" data-bind="click: $parent.selectPost">
-             <div data-bind="html: id"></div>
-            <div data-bind="html: body"></div>  
+            <div data-bind="html: id"></div>
+            <div id="postbody" data-bind="html: body"></div>
+
         </li>
+    </ul>
+    <div>
+        <button data-bind="enable: canPrev(), click: showPrev" class="btn btn-sm btn-info col-sm-2">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+        </button>
+        <h5 class="col-sm-offset-1 col-sm-4 text-center">Total posts: <span data-bind="text: total"></span></h5>
+        <button data-bind="enable: canNext(), click: showNext"
+                class="btn btn-sm btn-info col-sm-2 col-sm-offset-2">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+        </button>
+    </div>
+</div>
+        <!--<li data-bind="text: $data.total"></li>
+        <li data-bind="text: $data.prev"></li>
+        <li data-bind="text: $data.next"></li>-->
    
-
-    <!--<li data-bind="text: $data.total"></li>
-    <li data-bind="text: $data.prev"></li>
-    <li data-bind="text: $data.next"></li>-->
-</ul>
-

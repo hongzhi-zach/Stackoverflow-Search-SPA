@@ -9,11 +9,12 @@ namespace WebApi.JsonModels
 {
     public class ModelFactory
     {
-        public static SearchResultModel SearchMap(SearchResult searchresult)
+        public static SearchResultModel SearchMap(SearchResult searchresult, IUrlHelper url)
         {
 
             return new SearchResultModel
             {
+                Url = url.Link(Config.PostRoute, new { id = searchresult.id }),
                 id = searchresult.id,
                 title = searchresult.title,
                 body = searchresult.body
@@ -29,6 +30,28 @@ namespace WebApi.JsonModels
                 id = model.id,
                 title = model.title,
                 body = model.body
+            };
+        }
+        //history
+
+        public static HistoryModel hMap(History history, IUrlHelper url)
+        {
+
+            return new HistoryModel
+            {
+                Url = url.Link(Config.HistoryRoute, new { id = history.id }),
+                id = history.id,
+                searchstring = history.searchstring
+            };
+        }
+
+        public static History hMap(HistoryModel model)
+        {
+
+            return new History
+            {
+                id = model.id,
+                searchstring = model.searchstring
             };
         }
 

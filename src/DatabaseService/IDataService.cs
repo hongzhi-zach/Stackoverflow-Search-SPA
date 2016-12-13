@@ -9,8 +9,15 @@ namespace DatabaseService
     public interface IDataService
     {
         
-        IList<SearchResult> EFShowSearchResult(string searchstring);
+        IList<SearchResult> EFShowSearchResult(string searchstring, int page, int pagesize);
         void EFMarkThisPost(int postid, string searchstring);
+        SearchResult GetSearchResult(int id);
+
+        //history
+        IList<History> GetHistoryList(int page, int pagesize);
+        History GetHistory(int id);
+        void AddHistory(History history);
+        int GetCountOfHistoryList();
 
         //Post
         IList<Post> GetPosts(int page, int pagesize);

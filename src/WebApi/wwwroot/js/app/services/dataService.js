@@ -18,6 +18,14 @@
         });
     };
 
+    var getHistoryList = function ( callback) {
+        var url = "api/history";
+        $.getJSON(url, function (data) {
+            callback(data);
+        });
+    };
+
+
     var getSearchResult = function (url, searchString, callback) {
         if (url === undefined) {
             url = "api/search?=" + searchString();
@@ -36,7 +44,8 @@
     return {
         getComments,
         getPosts,
-        getSearchResult
+        getSearchResult,
+        getHistoryList
     };
 });
 

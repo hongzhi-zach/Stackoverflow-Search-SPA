@@ -12,15 +12,57 @@ namespace DatabaseService
 {
     public class MySovaDataService : IDataService
     {
-        
-        public IList<SearchResult> EFShowSearchResult(string searchstring)
+        public IList<History> GetHistoryList(int page, int pagesize)
+        {
+
+            using (var db = new Sova())
+            {
+                return db.HistoryList
+                    .OrderBy(h => h.id)
+                    .Skip(page * pagesize)
+                    .Take(pagesize)
+                    .ToList();
+            }
+        }
+
+        public History GetHistory(int id)
         {
             using (var db = new Sova())
             {
-                //var conn = (MySqlConnection)db.Database.GetDbConnection();
-                //conn.Open();
-                //var cmd = new MySqlCommand("call weightingsearch(@searchstring)", conn);
-                //cmd.Parameters.Add("@searchstring", DbType.String).Value = searchstring;
+                return db.HistoryList.FirstOrDefault(h => h.id == id);
+            }
+        }
+
+        public void AddHistory(History history)
+        {
+            using (var db = new Sova())
+            {
+                history.id = db.HistoryList.Max(h => h.id) + 1;
+                db.Add(history);
+                db.SaveChanges();
+            }
+        }
+
+        public int GetCountOfHistoryList()
+        {
+            using (var db = new Sova())
+            {
+                return db.HistoryList.Count();
+            }
+        }
+
+
+        public IList<SearchResult> EFShowSearchResult(string searchstring, int page, int pagesize)
+        {
+            using (var db = new Sova())
+            {
+                if(searchstring != null) { 
+                var conn = (MySqlConnection)db.Database.GetDbConnection();
+                conn.Open();
+                var cmd = new MySqlCommand("insert into `history`(`searchstring`) VALUES (@searchstring);", conn);
+                cmd.Parameters.Add("@searchstring", DbType.String).Value = searchstring;
+                cmd.ExecuteNonQuery();
+                }
                 //var reader = cmd.ExecuteReader();
                 //var result = new List<SearchResult>();
                 //while(reader.HasRows && reader.Read())
@@ -39,7 +81,10 @@ namespace DatabaseService
                 {
                     Console.WriteLine($"{data.id} {data.title} {data.body}");
                 }
-                return result.ToList();
+                return result
+                    .Skip(page * pagesize)
+                    .Take(pagesize)
+                    .ToList();
             }
         }
 
@@ -68,6 +113,13 @@ namespace DatabaseService
                     .Skip(page * pagesize)
                     .Take(pagesize)
                     .ToList();
+            }
+        }
+        public SearchResult GetSearchResult(int id)
+        {
+            using (var db = new Sova())
+            {
+                return db.SearchResults.FirstOrDefault(s => s.id == id);
             }
         }
 
@@ -120,6 +172,7 @@ namespace DatabaseService
             }
         }
 
+       
         public int GetNumberOfPosts()
         {
             using (var db = new Sova())

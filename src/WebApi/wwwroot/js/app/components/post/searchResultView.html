@@ -5,10 +5,20 @@
 
 
         <li class="list-group-item" data-bind="click: $parent.selectPost">
-            <div style="font-size:large;cursor:pointer" data-bind="text: title"></div>
+            <div style="font-size:large;cursor:pointer" data-bind="html: title"></div>
             <div style="cursor:pointer"data-bind="html: body"></div>
         </li>
         </ul>
         
+    <div>
+        <button data-bind="enable: canPrev(), click: showPrev" class="btn btn-sm btn-info col-sm-2">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+        </button>
+        <h5 class="col-sm-offset-1 col-sm-4 text-center">Total result: <span data-bind="text: total"></span></h5>
+        <button data-bind="enable: canNext(), click: showNext"
+                class="btn btn-sm btn-info col-sm-2 col-sm-offset-2">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+        </button>
+    </div>
 
 </div>

@@ -16,7 +16,7 @@ namespace DatabaseService
         public DbSet<Linkpost> Linkpost { get; set; }
         public DbSet<Post_tag> Post_tag { get; set; }
         public DbSet<Tags> Tags { get; set; }
-        //public DbSet<History> History { get; set; }
+        public DbSet<History> HistoryList { get; set; }
         public DbSet<Markedpost> Markedpost { get; set; }
         public DbSet<SearchResult> SearchResults { get; set; }
 
@@ -67,10 +67,11 @@ namespace DatabaseService
             modelBuilder.Entity<Tags>().Property(t => t.id).HasColumnName("tagid");
             modelBuilder.Entity<Tags>().Property(t => t.tagkeyword).HasColumnName("tagkeyword");
 
-            /*//History
+            //History
             modelBuilder.Entity<History>().ToTable("history");
+            modelBuilder.Entity<History>().Property(h => h.id).HasColumnName("historyid");
             modelBuilder.Entity<History>().Property(h => h.searchstring).HasColumnName("searchstring");
-
+/*
             //Markedpost
             modelBuilder.Entity<Markedpost>().ToTable("markedpost");
             modelBuilder.Entity<Markedpost>().Property(mp => mp.postid).HasColumnName("postid");
