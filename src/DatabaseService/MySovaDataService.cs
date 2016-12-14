@@ -51,6 +51,23 @@ namespace DatabaseService
         }
 
 
+        public IList<PostDetail> EFShowPostDetail(int postid)
+        {
+            using (var db = new Sova())
+            {
+                var queryString = "call selectpostdetails(" + postid.ToString() + ");";
+                Console.WriteLine(queryString);
+                var result = db.Set<PostDetail>()
+                    .FromSql(queryString);
+                foreach (var data in result)
+                {
+                    Console.WriteLine($"{data.id} {data.title} {data.body}");
+                }
+                return result
+                    .ToList();
+            }
+        }
+
         public IList<SearchResult> EFShowSearchResult(string searchstring, int page, int pagesize)
         {
             using (var db = new Sova())
@@ -86,6 +103,7 @@ namespace DatabaseService
                     .ToList();
             }
         }
+
 
         public void EFMarkThisPost(int postid, string searchstring)
         {
@@ -124,6 +142,12 @@ namespace DatabaseService
 
         public Post GetPost(int id)
         {
+            //db.Postdetails.Add(db.Posts.FirstOrDefault(p => p.id == id));
+            //for (var i = 0; i < db.Posts.Count(); i++)
+            //{
+            //    db.Posts.SelectMany((p => p.parentid == id), db.Postdetails);
+            //}
+            //return db.Postdetails.ToList();
             using (var db = new Sova())
             {
                 return db.Posts.FirstOrDefault(p => p.id == id);

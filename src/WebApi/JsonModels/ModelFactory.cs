@@ -32,6 +32,32 @@ namespace WebApi.JsonModels
                 body = model.body
             };
         }
+
+        //postdetail
+        public static PostDetailModel PostDetailMap(PostDetail postdetail, IUrlHelper url)
+        {
+
+            return new PostDetailModel
+            {
+                Url = url.Link(Config.PostDetailRoute, new { id = postdetail.id }),
+                id = postdetail.id,
+                title = postdetail.title,
+                body = postdetail.body
+            };
+        }
+
+
+        public static PostDetail PostDetailMap(PostDetailModel model)
+        {
+
+            return new PostDetail
+            {
+                id = model.id,
+                title = model.title,
+                body = model.body
+            };
+        }
+
         //history
 
         public static HistoryModel hMap(History history, IUrlHelper url)

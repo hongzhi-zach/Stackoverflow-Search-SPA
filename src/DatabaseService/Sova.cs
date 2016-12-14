@@ -11,6 +11,7 @@ namespace DatabaseService
     public class Sova : DbContext
     {
         public DbSet<Post> Posts { get; set; }
+        public DbSet<PostDetail> Postdetails { get; set; }
         public DbSet<Comment> Comments { get; set; }
         public DbSet<User> User { get; set; }
         public DbSet<Linkpost> Linkpost { get; set; }
@@ -78,6 +79,7 @@ namespace DatabaseService
             modelBuilder.Entity<Markedpost>().Property(mp => mp.searchstring).HasColumnName("searchstring");*/
 
             modelBuilder.Entity<SearchResult>().HasKey(t => new { t.id, t.title, t.body });
+            modelBuilder.Entity<PostDetail>().HasKey(t => new { t.id, t.body });
             modelBuilder.Entity<Markedpost>().HasKey(t => new { t.postid, t.searchstring});
 
             base.OnModelCreating(modelBuilder);

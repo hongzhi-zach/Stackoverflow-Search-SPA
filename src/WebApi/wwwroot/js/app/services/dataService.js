@@ -34,6 +34,14 @@
             callback(data);
         });
     };
+    var getPostDetail = function ( questionID, callback) {
+        
+        url = "api/postdetail?=" + questionID.toString();
+        console.log(url);
+        $.getJSON(url, function (data) {
+            callback(data);
+        });
+    };
     //var getSearchResult = function (searchString, callback) {
     //    var searchUrl = "api/search?=" + searchString();
     //    $.getJSON(searchUrl, function (data) {
@@ -45,7 +53,8 @@
         getComments,
         getPosts,
         getSearchResult,
-        getHistoryList
+        getHistoryList,
+        getPostDetail
     };
 });
 

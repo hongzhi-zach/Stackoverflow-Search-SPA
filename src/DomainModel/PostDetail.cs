@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace DomainModel
 {
-    public class SearchProcedureResult
+    public class PostDetail
     {
+        public int id { get; set; }
         public string title { get; set; }
         public string body { get; set; }
-        public int score { get; set; }
+        
     }
 }

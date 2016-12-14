@@ -16,8 +16,10 @@
 
         var curPage = ko.observable(params ? params.url : undefined);
         var selectPost = function (post) {
+           
             postman.publish(config.events.selectPost, {
                 post,
+                
                 url: curPage(),
                 howToGetBack: function () {
                     postman.publish(config.events.searchPost, params);
@@ -41,7 +43,6 @@
             posts(result.data);
             total(result.total);
             prevUrl(result.prev);
-            console.log(result.next);
             nextUrl(result.next);
             curPage(result.url);
         };

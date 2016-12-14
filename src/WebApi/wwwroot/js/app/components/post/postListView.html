@@ -2,9 +2,9 @@
     <ul class="list-group" data-bind="foreach: posts">
 
         <li class="list-group-item" data-bind="click: $parent.selectPost">
-            <div data-bind="html: id"></div>
+            
             <div id="postbody" data-bind="html: body"></div>
-
+            <p style="font-style:italic">Creation Date: <span data-bind="html: creationdate"></span></p>
         </li>
     </ul>
     <div>

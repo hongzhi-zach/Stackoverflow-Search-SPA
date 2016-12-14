@@ -1,7 +1,9 @@
-﻿define(['knockout', 'postman', 'config', 'toastr'], function (ko, postman, config, toastr) {
+﻿define(['knockout', 'postman', 'config', 'dataservice', 'toastr'], function (ko, postman, config, dataService, toastr) {
    
     return function (params) {
-        var post = ko.observable(params.post);
+        var postdetail = ko.observableArray([]);
+        
+        //var postdetail = dataService.getPostDetail(params.post.id)
 
         var back = function () {
             params.howToGetBack();
@@ -11,10 +13,20 @@
             //console.log(params);
             
         };
+        var setData = function (result) {
+            postdetail(result.result);
+            console.log(result.url);
+        };
+
+        dataService.getPostDetail(params.post.id, function (result) {
+            console.log(params.post.id);
+            setData(result);
+        });
 
         //back = params.howToGetBack;
         return {
-            post,
+            postdetail,
+
             back
         };
     };

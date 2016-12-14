@@ -8,6 +8,7 @@ namespace WebApi
     public class Config
     {
         public const int DefaultPageSize = 10;
+        public const string PostDetailRoute = "PostDetailRoute";
         public const string SearchResultRoute = "SearchResultRoute";
         public const string CommentRoute = "CommentRoute";
         public const string CommentsRoute = "CommentsRoute";

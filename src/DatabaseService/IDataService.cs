@@ -12,7 +12,7 @@ namespace DatabaseService
         IList<SearchResult> EFShowSearchResult(string searchstring, int page, int pagesize);
         void EFMarkThisPost(int postid, string searchstring);
         SearchResult GetSearchResult(int id);
-
+        IList<PostDetail> EFShowPostDetail(int postid);
         //history
         IList<History> GetHistoryList(int page, int pagesize);
         History GetHistory(int id);
