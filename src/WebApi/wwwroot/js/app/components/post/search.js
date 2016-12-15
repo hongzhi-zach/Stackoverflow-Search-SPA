@@ -13,11 +13,20 @@
         //var curPage = ko.observable(params ? params.url : undefined);
 
         var searchPost = function (resultList) {
-            dataService.getSearchResult(params ? params.url : undefined, searchString, function (data) {
-                //searchResult(data.result);
-                //curPage(data.url);
-                postman.publish(config.events.searchPost, { resultList: data.result, url: data.url });
-            });
+           
+            if(searchString() !== ""){
+                
+                dataService.getSearchResult(params ? params.url : undefined, searchString(), function (data) {
+                    //searchResult(data.result);
+                    //curPage(data.url);
+                    postman.publish(config.events.searchPost, { resultList: data.result, url: data.url });
+                });
+            } else {
+                alert("Value is empty");
+            }
+                
+            
+            
             //var postData = "{'searchstring':'" + searchString + "'}";
             //console.log(postData);
             //request.open(method, historyUrl, async);
@@ -25,11 +34,12 @@
             //request.send(postData);
         };
 
-        
+       
 
         return {
             searchString,
-            searchPost
+            searchPost,
+            
             //searchResult
         }
     };

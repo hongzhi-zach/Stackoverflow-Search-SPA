@@ -1,7 +1,9 @@
-﻿<form id="searchinput" class="navbar-form navbar-left">
+﻿
+
+<form id="searchinput" class="navbar-form navbar-left" >
     <div class="form-group">
-        <span><input type="text" class="form-control" name="searchinputstring" data-bind="value: searchString"  data-match-error="Search String is Too Long"></span>
-    <span><button type="submit" class="btn btn-default" data-bind="click: searchPost">Search</button></span>
+        <span><input type="text" id ="searchtext" class="form-control" name="searchinputstring" data-bind="value: searchString"  data-match-error="Search String is Too Long"></span>
+    <span><button  type="submit" class="btn btn-default" data-bind="click: searchPost">Search</button></span>
 </div>
     
 </form>

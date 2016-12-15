@@ -28,7 +28,7 @@
 
     var getSearchResult = function (url, searchString, callback) {
         if (url === undefined) {
-            url = "api/search?=" + searchString();
+            url = "api/search?=" + searchString;
         }
         $.getJSON(url, function (data) {
             callback(data);

@@ -78,7 +78,7 @@ namespace DatabaseService
             modelBuilder.Entity<Markedpost>().Property(mp => mp.postid).HasColumnName("postid");
             modelBuilder.Entity<Markedpost>().Property(mp => mp.searchstring).HasColumnName("searchstring");*/
 
-            modelBuilder.Entity<SearchResult>().HasKey(t => new { t.id, t.title, t.body });
+            modelBuilder.Entity<SearchResult>().HasKey(t => new { t.id, t.body });
             modelBuilder.Entity<PostDetail>().HasKey(t => new { t.id, t.body });
             modelBuilder.Entity<Markedpost>().HasKey(t => new { t.postid, t.searchstring});
 
@@ -89,7 +89,7 @@ namespace DatabaseService
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseMySql("server=localhost;database=hzhang;uid=root;pwd=test");
+            optionsBuilder.UseMySql("server=localhost;database=hzhang;uid=root;pwd=1dunnoAthing");
             base.OnConfiguring(optionsBuilder);
         }
     }

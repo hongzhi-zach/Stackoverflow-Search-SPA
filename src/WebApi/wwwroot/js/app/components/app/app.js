@@ -1,4 +1,4 @@
-﻿define(['knockout', 'postman', 'config', 'dataservice'], function (ko, postman, config, dataService) {
+﻿define(['knockout', 'postman', 'config', 'dataservice', 'jquery', 'bootstrap'], function (ko, postman, config, dataService, $, bt) {
     return function () {
         var menuItems = [
             //{ title: config.menuItems.searchPost, component: 'search-post' },
