@@ -5,10 +5,11 @@ using System.Threading.Tasks;
 
 namespace WebApi.JsonModels
 {
-    public class TagsModel
+    public class CloudModel
     {
         public string Url { get; set; }
-        public int id { get; set; }
-        public string tagkeyword { get; set; }
+        public string text { get; set; }
+        public decimal weight { get; set; }
+
     }
 }

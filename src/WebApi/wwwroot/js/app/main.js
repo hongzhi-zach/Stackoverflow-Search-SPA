@@ -1,4 +1,7 @@
-﻿
+﻿/// <reference path="../lib/jqcloud/src/jqcloud.js" />
+/// <reference path="../lib/jqcloud/dist/jqcloud.js" />
+/// <reference path="../lib/jqcloud/dist/jqcloud.min.js" />
+
 (function (undefined) {
 
     require.config({
@@ -9,7 +12,7 @@
             "text": "lib/requirejs-text/text",
             "bootstrap": "lib/bootstrap/dist/js/bootstrap.min",
             "toastr": "lib/toastr/toastr.min",
-
+            "jqcloud": "lib/jqcloud/dist/jqcloud",
             "dataservice": "app/services/dataService",
             "postman": "app/services/postman",
             "config": "app/config"
@@ -60,10 +63,7 @@
            viewModel: { require: 'app/components/post/search' },
            template: { require: 'text!app/components/post/searchView.html' }
        });
-       //ko.components.register("side-bar", {
-       //    viewModel: { require: 'app/components/sidebar/sidebar' },
-       //    template: { require: 'text!app/components/sidebar/sidebarView.html' }
-       //});
+       
     });
 
     require(['knockout'], function (ko) {

@@ -16,11 +16,10 @@ namespace DatabaseService
         public DbSet<User> User { get; set; }
         public DbSet<Linkpost> Linkpost { get; set; }
         public DbSet<Post_tag> Post_tag { get; set; }
-        public DbSet<Tags> Tags { get; set; }
         public DbSet<History> HistoryList { get; set; }
         public DbSet<Markedpost> Markedpost { get; set; }
         public DbSet<SearchResult> SearchResults { get; set; }
-
+        public DbSet<Cloud> WordCloud { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Post>().ToTable("post");
@@ -63,10 +62,7 @@ namespace DatabaseService
             modelBuilder.Entity<Post_tag>().Property(pt => pt.postid).HasColumnName("postid");
             modelBuilder.Entity<Post_tag>().Property(pt => pt.tagkeyword).HasColumnName("tagkeyword");
 
-           //Tags
-            modelBuilder.Entity<Tags>().ToTable("tags");
-            modelBuilder.Entity<Tags>().Property(t => t.id).HasColumnName("tagid");
-            modelBuilder.Entity<Tags>().Property(t => t.tagkeyword).HasColumnName("tagkeyword");
+          
 
             //History
             modelBuilder.Entity<History>().ToTable("history");
@@ -79,6 +75,7 @@ namespace DatabaseService
             modelBuilder.Entity<Markedpost>().Property(mp => mp.searchstring).HasColumnName("searchstring");*/
 
             modelBuilder.Entity<SearchResult>().HasKey(t => new { t.id, t.body });
+            modelBuilder.Entity<Cloud>().HasKey(t => new { t.word, t.wordrank });
             modelBuilder.Entity<PostDetail>().HasKey(t => new { t.id, t.body });
             modelBuilder.Entity<Markedpost>().HasKey(t => new { t.postid, t.searchstring});
 

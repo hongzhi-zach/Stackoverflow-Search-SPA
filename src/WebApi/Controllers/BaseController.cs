@@ -100,17 +100,6 @@ namespace WebApi.Controllers
             if (IsFirstPage(page)) return null;
             return url.Link(Config.Post_tagsRoute, new { page = page - 1, pagesize });
         }
-
-        //Tags
-        protected string GetNextTagsUrl(IUrlHelper url, int page, int pagesize, int total)
-        {
-            if (IsLastPage(page, pagesize, total)) return null;
-            return url.Link(Config.TagsRoute, new { page = page + 1, pagesize });
-        }
-        protected string GetPrevTagsUrl(IUrlHelper url, int page, int pagesize)
-        {
-            if (IsFirstPage(page)) return null;
-            return url.Link(Config.TagsRoute, new { page = page - 1, pagesize });
-        }
+        
     }
 }

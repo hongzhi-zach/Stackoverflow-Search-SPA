@@ -8,7 +8,7 @@ namespace DatabaseService
 {
     public interface IDataService
     {
-        
+        IList<Cloud> EFShowWordCloud(string word);
         IList<SearchResult> EFShowSearchResult(string searchstring, int page, int pagesize);
         void EFMarkThisPost(int postid, string searchstring);
         SearchResult GetSearchResult(int id);
@@ -59,13 +59,7 @@ namespace DatabaseService
         bool DeletePost_tag(int id);
         int GetNumberOfPost_tag();
 
-        //Tags
-        IList<Tags> GetTags(int page, int pagesize);
-        Tags GetTags(int id);
-        void AddTags(Tags tags);
-        bool UpdateTags(Tags tags);
-        bool DeleteTags(int id);
-        int GetNumberOfTags();
+       
 
         //History
 

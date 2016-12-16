@@ -104,6 +104,20 @@ namespace DatabaseService
             }
         }
 
+        public IList<Cloud> EFShowWordCloud(string word)
+        {
+            using (var db = new Sova())
+            {
+                var result = db.Set<Cloud>()
+                    .FromSql("call resultwordweightranking('" + word + "')");
+                foreach (var data in result)
+                {
+                    Console.WriteLine($"{data.word} {data.wordrank}");
+                }
+                return result
+                    .ToList();
+            }
+        }
 
         public void EFMarkThisPost(int postid, string searchstring)
         {
@@ -485,75 +499,7 @@ namespace DatabaseService
             }
         }
 
-        //Tags
-
-        public IList<Tags> GetTags(int page, int pagesize)
-        {
-            using (var db = new Sova())
-            {
-                return db.Tags
-                    .OrderBy(ta => ta.id)
-                    .Skip(page * pagesize)
-                    .Take(pagesize)
-                    .ToList();
-            }
-        }
-
-        public Tags GetTags(int id)
-        {
-            using (var db = new Sova())
-            {
-                return db.Tags.FirstOrDefault(ta => ta.id == id);
-            }
-        }
-
-        public void AddTags(Tags tags)
-        {
-            using (var db = new Sova())
-            {
-                tags.id = db.Tags.Max(ta => ta.id) + 1;
-                db.Add(tags);
-                db.SaveChanges();
-            }
-        }
-
-        public bool UpdateTags(Tags tags)
-        {
-            using (var db = new Sova())
-
-                try
-                {
-                    db.Attach(tags);
-                    db.Entry(tags).State = EntityState.Modified;
-                    return db.SaveChanges() > 0;
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    return false;
-                }
-
-        }
-
-        public bool DeleteTags(int id)
-        {
-            using (var db = new Sova())
-            {
-                var tags = db.Tags.FirstOrDefault(ta => ta.id == id);
-                if (tags == null)
-                {
-                    return false;
-                }
-                db.Remove(tags);
-                return db.SaveChanges() > 0;
-            }
-        }
-
-        public int GetNumberOfTags()
-        {
-            using (var db = new Sova())
-            {
-                return db.Tags.Count();
-            }
-        }
+        
+        
     }
 }

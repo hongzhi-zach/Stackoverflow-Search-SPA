@@ -10,6 +10,7 @@ namespace WebApi
         public const int DefaultPageSize = 10;
         public const string PostDetailRoute = "PostDetailRoute";
         public const string SearchResultRoute = "SearchResultRoute";
+        public const string CloudRoute = "CloudRoute";
         public const string CommentRoute = "CommentRoute";
         public const string CommentsRoute = "CommentsRoute";
         public const string PostRoute = "PostRoute";
@@ -20,8 +21,6 @@ namespace WebApi
         public const string UsersRoute = "UsersRoute";
         public const string LinkpostRoute = "LinkpostRoute";
         public const string LinkpostsRoute = "LinkpostsRoute";
-        public const string TagRoute = "TagRoute";
-        public const string TagsRoute = "TagsRoute";
         public const string HistoryRoute = "HistoryRoute";
         public const string HistoryListRoute = "HistoryListRoute";
     }

@@ -1,6 +1,7 @@
 ﻿define([], function () {
     return {
         events: {
+            getWordCloud:"GetWordCloud",
             selectComment: "SelectComment",
             submitComment: "SubmitComment",
             selectPost: "SelectPost",
@@ -8,8 +9,8 @@
             changeMenu: "ChangeMenu"
         },
         menuItems: {
+
             history: "Search History",
-            comments: "Comments",
             posts: "Posts"
         }
     };

@@ -5,10 +5,11 @@ using System.Threading.Tasks;
 
 namespace DomainModel
 {
-    public class Tags
+    public class Cloud
     {
-        public int id { get; set; }
-        public string tagkeyword { get; set; }
+       
+        public string word { get; set; }
+        public decimal wordrank { get; set; }
 
     }
 }

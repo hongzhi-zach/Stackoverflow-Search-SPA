@@ -9,6 +9,29 @@ namespace WebApi.JsonModels
 {
     public class ModelFactory
     {
+        //wordcloud
+        public static CloudModel CloudMap(Cloud cloud, IUrlHelper url)
+        {
+
+            return new CloudModel
+            {
+                Url = url.Link(Config.CloudRoute, new { word = cloud.word }),
+                text = cloud.word,
+                weight = cloud.wordrank
+            };
+        }
+
+
+        public static Cloud CloudMap(CloudModel model)
+        {
+
+            return new Cloud
+            {
+                word = model.text,
+                wordrank = model.weight
+            };
+        }
+
         public static SearchResultModel SearchMap(SearchResult searchresult, IUrlHelper url)
         {
 
@@ -204,26 +227,6 @@ namespace WebApi.JsonModels
             };
         }
 
-        //Tags
-        public static TagsModel tMap(Tags t, IUrlHelper url)
-        {
-
-            return new TagsModel
-            {
-                Url = url.Link(Config.TagRoute, new { id = t.id }),
-                id = t.id,
-                tagkeyword = t.tagkeyword
-            };
-        }
-
-        public static Tags tMap(TagsModel model)
-        {
-
-            return new Tags
-            {
-                id = model.id,
-                tagkeyword = model.tagkeyword
-            };
-        }
+        
     }
 }

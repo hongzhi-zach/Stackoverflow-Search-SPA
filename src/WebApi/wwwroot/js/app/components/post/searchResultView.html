@@ -1,16 +1,15 @@
-﻿<div class="col-sm-12">
+﻿<div class="col-xm-12">
         
     <div>
-        <button data-bind="enable: canPrev(), click: showPrev" class="btn btn-sm btn-info col-sm-2">
-            <span class="glyphicon glyphicon-chevron-left"></span>
+        <button data-bind="enable: canPrev(), click: showPrev" class="btn btn-xm btn-info col-xm-2">
+            <span class="glyphicon glyphicon-chevron-left"> Prev</span>
         </button>
-        <h5 class="col-sm-offset-2 col-sm-4 text-center">Total result: <span data-bind="text: total"></span></h5>
-        <button data-bind="enable: canNext(), click: showNext"
-                class="btn btn-sm btn-info col-sm-2 col-sm-offset-2">
-            <span class="glyphicon glyphicon-chevron-right"></span>
+        <button style="float:right" data-bind="enable: canNext(), click: showNext"
+                class="btn btn-xm btn-info col-xm-2 col-xm-offset-2">
+            <span class="glyphicon glyphicon-chevron-right"> Next</span>
         </button>
     </div>
-    <ul style="margin-top:5%" class="list-group" data-bind="foreach: searchResult">
+    <ul style="margin-top:2%" class="list-group" data-bind="foreach: searchResult">
 
 
         <li class="list-group-item" data-bind="click: $parent.selectPost">
@@ -22,3 +21,4 @@
     
 
 </div>
+<div id="wordcloud" style="width: 550px; height: 350px; "></div>

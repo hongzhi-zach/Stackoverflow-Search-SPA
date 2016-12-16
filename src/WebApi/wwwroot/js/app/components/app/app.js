@@ -4,7 +4,7 @@
             //{ title: config.menuItems.searchPost, component: 'search-post' },
             //{ title: config.menuItems.comments, component: 'comment-list'}, 
             { title: config.menuItems.posts, component: 'post-list' },
-            { title: config.menuItems.history, component: 'history-list' }
+            { title: config.menuItems.history, component: 'history-list' },
         ];
 
         //var searchString = ko.observable("");
@@ -51,6 +51,7 @@
             currentParams(params);
             currentComponent("search-result");
         });
+        
 
         postman.subscribe(config.events.changeMenu, function (data) {
             for (var i = 0; i < menuItems.length; i++) {
