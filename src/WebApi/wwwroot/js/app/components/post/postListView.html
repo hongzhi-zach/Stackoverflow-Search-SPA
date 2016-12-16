@@ -1,12 +1,4 @@
 ﻿<div class="col-sm-12">
-    <ul class="list-group" data-bind="foreach: posts">
-
-        <li class="list-group-item" data-bind="click: $parent.selectPost">
-            
-            <div id="postbody" data-bind="html: body"></div>
-            <p style="font-style:italic">Creation Date: <span data-bind="html: creationdate"></span></p>
-        </li>
-    </ul>
     <div>
         <button data-bind="enable: canPrev(), click: showPrev" class="btn btn-sm btn-info col-sm-2">
             <span class="glyphicon glyphicon-chevron-left"></span>
@@ -17,6 +9,15 @@
             <span class="glyphicon glyphicon-chevron-right"></span>
         </button>
     </div>
+    <ul style="margin-top:5%" class="list-group" data-bind="foreach: posts">
+
+        <li class="list-group-item" data-bind="click: $parent.selectPost">
+            
+            <div id="postbody" data-bind="html: body"></div>
+            <p style="font-style:italic">Creation Date: <span data-bind="html: creationdate"></span></p>
+        </li>
+    </ul>
+   
 </div>
         <!--<li data-bind="text: $data.total"></li>
         <li data-bind="text: $data.prev"></li>

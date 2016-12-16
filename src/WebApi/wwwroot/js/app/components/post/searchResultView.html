@@ -1,15 +1,5 @@
 ﻿<div class="col-sm-12">
         
-
-    <ul class="list-group" data-bind="foreach: searchResult">
-
-
-        <li class="list-group-item" data-bind="click: $parent.selectPost">
-            <div style="font-size:large;cursor:pointer" data-bind="html: title"></div>
-            <div style="cursor:pointer"data-bind="html: body"></div>
-        </li>
-        </ul>
-        
     <div>
         <button data-bind="enable: canPrev(), click: showPrev" class="btn btn-sm btn-info col-sm-2">
             <span class="glyphicon glyphicon-chevron-left"></span>
@@ -20,5 +10,15 @@
             <span class="glyphicon glyphicon-chevron-right"></span>
         </button>
     </div>
+    <ul class="list-group" data-bind="foreach: searchResult">
+
+
+        <li class="list-group-item" data-bind="click: $parent.selectPost">
+            <div style="font-size:large;cursor:pointer" data-bind="html: title"></div>
+            <div style="cursor:pointer"data-bind="html: body"></div>
+        </li>
+        </ul>
+        
+    
 
 </div>

@@ -60,6 +60,10 @@
            viewModel: { require: 'app/components/post/search' },
            template: { require: 'text!app/components/post/searchView.html' }
        });
+       //ko.components.register("side-bar", {
+       //    viewModel: { require: 'app/components/sidebar/sidebar' },
+       //    template: { require: 'text!app/components/sidebar/sidebarView.html' }
+       //});
     });
 
     require(['knockout'], function (ko) {
